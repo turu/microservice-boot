@@ -1,0 +1,15 @@
+graphite:
+  host: graphite.host
+  port: 2013
+  prefix: apps.your_app_name
+  frequency-in-sec: 60
+
+---
+
+spring:
+  profiles: int
+
+---
+
+spring:
+  profiles: prod
