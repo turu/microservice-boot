@@ -5,6 +5,7 @@ if [ -f service.pid ]; then
     exit 1
 fi
 
+cmd_args=$@
 env=${1:-default}
 
 jvm_xms=${2:-2g}
@@ -16,7 +17,10 @@ if [ "$env" = "prod" ]; then
     new_size=3g
 fi
 
-jvm_args="-Xms${jvm_xms} -Xmx${jvm_xmx} -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:NewSize=${new_size} -XX:MaxNewSize=${new_size} -XX:CMSInitiatingOccupancyFraction=50 -XX:+CMSParallelRemarkEnabled -Djava.net.preferIPv4Stack=true"
+hostname=`hostname -I | cut -d' ' -f1`
+
+jvm_args="-Xms${jvm_xms} -Xmx${jvm_xmx} -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:NewSize=${new_size} -XX:+CMSParallelRemarkEnabled -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=${hostname} -verbosegc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps
+-XX:-HeapDumpOnOutOfMemoryError -XX:OnOutOfMemoryError=./restart.sh"
 shift 3
 extra_args=$@
 
@@ -30,8 +34,10 @@ is_running=`netstat -pan | grep "$pid"`
 if [ ! -z "$is_running" ]; then
     echo "Service successfully started in env: $env. PID: $pid"
     echo ${pid} > service.pid
+    echo ${cmd_args} > service.args
 else
-    echo "Failed to start service in env: $env"
+    echo "Failed to start Service in env: $env"
     rm -f service.pid
+    rm -f service.args
     exit 1
 fi
