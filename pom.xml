@@ -10,6 +10,16 @@
   <name>microservice-boot</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jvmArgs.dev.gc>-verbosegc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled</jvmArgs.dev.gc>
+    <jvmArgs.prod.gc>-verbosegc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled</jvmArgs.prod.gc>
+    <jvmArgs.dev.jmx>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</jvmArgs.dev.jmx>
+    <jvmArgs.prod.jmx>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</jvmArgs.prod.jmx>
+    <jvmArgs.dev.xms>512g</jvmArgs.dev.xms>
+    <jvmArgs.dev.xmx>512g</jvmArgs.dev.xmx>
+    <jvmArgs.prod.xms>1g</jvmArgs.prod.xms>
+    <jvmArgs.prod.xmx>1g</jvmArgs.prod.xmx>
+    <jvmArgs.dev.newSize>128m</jvmArgs.dev.newSize>
+    <jvmArgs.prod.newSize>256m</jvmArgs.prod.newSize>
   </properties>
 
   <repositories>
