@@ -1,3 +1,11 @@
+security:
+  user:
+    name: admin
+    password: very_secret_password
+  basic:
+    enabled: false
+management:
+  context-path: /admin
 graphite:
   host: graphite.host
   port: 2013
