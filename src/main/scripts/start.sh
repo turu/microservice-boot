@@ -16,13 +16,13 @@ app_port=${2:-@app.port@}
 hostname=`hostname -I | cut -d' ' -f1`
 
 jmx_port=1099
-is_free=$(netstat -tapln | grep ${jmx_port})
+is_free=$(netstat -tapn | grep ${jmx_port})
 tries=0
 
 while [[ -n "${is_free}" || "${jmx_port}" = "${app_port}" && tries < 1000 ]]; do
     jmx_port=$[jmx_port+1]
     tries=$[tries+1]
-    is_free=$(netstat -tapln | grep ${jmx_port})
+    is_free=$(netstat -tapn | grep ${jmx_port})
 done
 
 if [[ -n "${is_free}" || "${jmx_port}" == "${app_port}" ]]; then
