@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@ImportResource("processingContext.xml")
+@ImportResource("applicationContext.xml")
 public class Application {
     @Bean
     public ConversionService conversionService() {

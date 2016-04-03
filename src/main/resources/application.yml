@@ -1,3 +1,23 @@
+info:
+  build:
+    artifact: @project.artifactId@
+    name: @name@
+    description: @description@
+    version: @version@
+security:
+  user:
+    name: admin
+    password: very_secret_password
+  basic:
+    enabled: false
+management:
+  context-path: /admin
+db:
+  driver: org.hsqldb.jdbcDriver
+  jdbcurl:  "jdbc:hsqldb:mem:."
+  username: sa
+  password: ""
+  pool-size: 1
 graphite:
   host: graphite.host
   port: 2013

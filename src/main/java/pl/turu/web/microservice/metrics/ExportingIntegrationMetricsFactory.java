@@ -14,18 +14,8 @@ public class ExportingIntegrationMetricsFactory implements MetricsFactory {
     @Override
     public AbstractMessageChannelMetrics createChannelMetrics(String name) {
         final DefaultMessageChannelMetrics channelMetrics = new DefaultMessageChannelMetrics(name);
-        final Gauge<Long> sendCount = new Gauge<Long>() {
-            @Override
-            public Long getValue() {
-                return channelMetrics.getSendCountLong();
-            }
-        };
-        final Gauge<Long> receiveCount = new Gauge<Long>() {
-            @Override
-            public Long getValue() {
-                return channelMetrics.getReceiveCountLong();
-            }
-        };
+        final Gauge<Long> sendCount = channelMetrics::getSendCountLong;
+        final Gauge<Long> receiveCount = channelMetrics::getReceiveCountLong;
         metricRegistry.register("app.queues." + name + ".in", sendCount);
         metricRegistry.register("app.queues." + name + ".out", receiveCount);
         return channelMetrics;
