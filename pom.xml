@@ -4,7 +4,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.turu.web</groupId>
   <artifactId>microservice-boot</artifactId>
-  <version>0.1.0-SNAPSHOT</version> 
+  <version>0.1.0-SNAPSHOT</version>
+  <description>Microservice-boot app</description>
   <packaging>jar</packaging>
 
   <name>microservice-boot</name>
@@ -61,7 +62,7 @@
       <version>2.9.2</version>
     </dependency>
 
-    <!-- Spring -->
+    <!-- Spring Core -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -92,6 +93,8 @@
       <version>0.19.0.RELEASE</version>
       <scope>compile</scope>
     </dependency>
+
+    <!-- Integrations -->
     <dependency>
       <groupId>org.springframework.integration</groupId>
       <artifactId>spring-integration-core</artifactId>
@@ -126,11 +129,6 @@
     </dependency>
 
     <!-- Databases -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.38</version>
-    </dependency>
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
@@ -189,6 +187,13 @@
       <groupId>org.easytesting</groupId>
       <artifactId>fest-assert</artifactId>
       <version>1.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>1.0-groovy-2.4</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   
@@ -247,6 +252,39 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <version>2.1.11</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <useFile>false</useFile>
+          <includes>
+            <include>**/*Spec.java</include>
+            <include>**/*Tests.java</include>
+            <include>**/*Test.java</include>
+          </includes>
+          <excludes>
+            <exclude>**/Abstract*.java</exclude>
+          </excludes>
+        </configuration>
       </plugin>
     </plugins>
   </build>
