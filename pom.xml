@@ -40,29 +40,7 @@
   </parent>
   
   <dependencies>
-    <!-- Compile dependencies -->
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>19.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.3.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.5</version>
-    </dependency>
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>2.9.2</version>
-    </dependency>
-
-    <!-- Spring Core -->
+    <!-- Core dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -88,19 +66,19 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>org.springframework.integration</groupId>
+      <artifactId>spring-integration-core</artifactId>
+      <version>4.2.2.RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.hateoas</groupId>
       <artifactId>spring-hateoas</artifactId>
       <version>0.19.0.RELEASE</version>
       <scope>compile</scope>
     </dependency>
 
-    <!-- Integrations -->
-    <dependency>
-      <groupId>org.springframework.integration</groupId>
-      <artifactId>spring-integration-core</artifactId>
-      <version>4.2.2.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
+    <!-- Kafka dependencies. Remove if not needed -->
     <dependency>
       <groupId>org.springframework.integration</groupId>
       <artifactId>spring-integration-kafka</artifactId>
@@ -117,18 +95,13 @@
       </exclusions>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.integration</groupId>
-      <artifactId>spring-integration-sftp</artifactId>
-      <version>4.2.2.RELEASE</version>
-    </dependency>
+
+    <!-- JDBC dependencies. Remove if not needed -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
       <version>4.2.2.RELEASE</version>
     </dependency>
-
-    <!-- Databases -->
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
@@ -150,6 +123,13 @@
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-jvm</artifactId>
       <version>3.1.0</version>
+    </dependency>
+
+    <!-- Misc dependencies -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>19.0</version>
     </dependency>
 
     <!-- Test dependencies -->
