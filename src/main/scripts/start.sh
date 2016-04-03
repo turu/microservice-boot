@@ -13,7 +13,7 @@ env=${1:-default}
 app_port=${2:-@app.port@}
 
 # Find hostname and available JMX port
-hostname=`hostname -I | cut -d' ' -f1`
+hostname=`ifconfig | grep inet | grep -v inet6 | awk '{print $2}' | cut -d: -f2 | egrep -v "^(127|192)"`
 
 jmx_port=1099
 is_free=$(netstat -tapn | grep ${jmx_port})
